@@ -14,6 +14,7 @@ import re
 
 from scrapper_utils import *
 
+
 # Get Artist Name and URL
 def get_artist_list(driver, letter, out_filename): 
     curr_pg = 1
@@ -61,6 +62,15 @@ if __name__ == "__main__":
     # INPUT: start from letter:
     letter = 'a'
 
+    if not os.path.exists('results'):
+        try:
+            os.makedirs('results')  # Use makedirs for nested directories
+            print(f"Directory 'results' created.")
+        except OSError as e:
+            print(f"Error creating directory 'results': {e}")
+    else:
+        print(f"Directory 'results' already exists.")
+
     try:
         # Setup Chrome options
         chrome_options = webdriver.ChromeOptions()
@@ -86,3 +96,18 @@ if __name__ == "__main__":
             print("Selenium driver closed.")
         except:
             print("Selenium driver already closed, or failed to close.")
+
+import pickle
+letter = 'a'
+filename = f'results/artists_url_{letter}.pickle'
+
+# Open and read the pickle file
+with open(filename, 'rb') as f:
+    data = pickle.load(f)
+
+# Print the data
+print("Contents of the pickle file:")
+for item in data:
+    print(item)
+
+    

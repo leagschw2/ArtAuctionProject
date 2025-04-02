@@ -145,7 +145,7 @@ def modify_url(url_ori, height=400, quality=80, resize_to='fit&amp', width=400):
                     'resize_to':resize_to, 
                     'width':str(int(width))}
 
-    http_, url_details = url_sample.split('://')
+    http_, url_details = url_ori.split('://')
     url_domain, url_details = url_details.split('?')
     url_details = url_details.split('&')
     for idx, d in enumerate(url_details):
